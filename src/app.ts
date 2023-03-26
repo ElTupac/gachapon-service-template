@@ -35,6 +35,11 @@ config();
 
   router.use("/user", corsImplementation, await userRoutes(ddbbConnection));
 
+  router.get("/status", (req, res) =>
+    res.status(200).json({
+      message: "server is up and running",
+    })
+  );
   router.use((req, res) => {
     const error = new Error("no resource");
     return res.status(404).json({
